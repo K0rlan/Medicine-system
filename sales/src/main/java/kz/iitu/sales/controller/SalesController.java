@@ -1,5 +1,6 @@
 package kz.iitu.sales.controller;
 
+import kz.iitu.sales.model.Category;
 import kz.iitu.sales.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,5 +18,9 @@ public class SalesController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getMedicineDiscountById(@PathVariable Long id) {
         return ResponseEntity.ok(salesService.getDiscountByMediicineId(id));
+    }
+    @GetMapping("/category/{category}")
+    public ResponseEntity<?> getMedicineDiscountByCategory(@PathVariable Category category) {
+        return ResponseEntity.ok(salesService.getDiscountByMediicineCategory(category));
     }
 }

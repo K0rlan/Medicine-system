@@ -1,5 +1,6 @@
 package kz.iitu.medicines.services.impl;
 
+import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.model.Medicine;
 import kz.iitu.medicines.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,12 @@ public class MedicineServiceImpl implements MedicineService {
             Medicine medicine = new Medicine();
             medicine.setId(id);
             medicine.setName("Title " + id);
-            medicine.setCategory("Categoty " + id);
+            Category category = Category.VITAMINS;
+            medicine.setCategory(category);
             medicine.setDosage("Dosage " + id);
             medicine.setManufacturer("Manufacturer " + id);
             medicine.setPrice(1000.0);
-            Double discount = restTemplate.getForObject("http://localhost:8082/medicines/discount/" + id, Double.class);
+            Double discount = restTemplate.getForObject("http://localhost:8082/medicines/discount/category/" + category, Double.class);
             medicine.setSales(discount);
             medicineList.add(medicine);
         }
@@ -43,10 +45,13 @@ public class MedicineServiceImpl implements MedicineService {
         Medicine medicine = new Medicine();
         medicine.setId(id);
         medicine.setName("Title " + id);
-        medicine.setCategory("Categoty " + id);
+        Category category = Category.VITAMINS;
+        medicine.setCategory(category);
         medicine.setDosage("Dosage " + id);
         medicine.setManufacturer("Manufacturer " + id);
         medicine.setPrice(1000.0);
+        Double discount = restTemplate.getForObject("http://localhost:8082/medicines/discount/category/" + category, Double.class);
+        medicine.setSales(discount);
         return medicine;
     }
 }

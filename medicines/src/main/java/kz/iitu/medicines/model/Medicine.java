@@ -12,7 +12,7 @@ public class Medicine {
     private String name;
     private String dosage;
     private String manufacturer;
-    private String category;
+    private Category category;
     private Double price;
     private Double sales;
 }

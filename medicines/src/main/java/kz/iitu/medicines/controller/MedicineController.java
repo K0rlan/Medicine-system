@@ -14,7 +14,7 @@ public class MedicineController {
     @Autowired
     private MedicineService medicineService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllMedicines() {
         return ResponseEntity.ok(medicineService.getAllMedicines());
     }
