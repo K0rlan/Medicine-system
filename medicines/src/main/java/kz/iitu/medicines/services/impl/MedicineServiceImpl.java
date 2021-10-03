@@ -1,5 +1,6 @@
 package kz.iitu.medicines.services.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.model.Medicine;
 import kz.iitu.medicines.services.MedicineService;
@@ -18,6 +19,7 @@ public class MedicineServiceImpl implements MedicineService {
     private RestTemplate restTemplate;
 
     @Override
+    @HystrixCommand(fallbackMethod = "getAllMedicines")
     public List<Medicine> getAllMedicines() {
         List<Medicine> medicineList = new ArrayList<>();
 
@@ -31,7 +33,7 @@ public class MedicineServiceImpl implements MedicineService {
             medicine.setDosage("Dosage " + id);
             medicine.setManufacturer("Manufacturer " + id);
             medicine.setPrice(1000.0);
-            Double discount = restTemplate.getForObject("http://localhost:8082/medicines/discount/category/" + category, Double.class);
+            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + category, Double.class);
             medicine.setSales(discount);
             medicineList.add(medicine);
         }
@@ -40,6 +42,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "getMedicineById")
     public Medicine getMedicineById(Long id) {
         System.out.println("id = " + id);
         Medicine medicine = new Medicine();
@@ -50,7 +53,7 @@ public class MedicineServiceImpl implements MedicineService {
         medicine.setDosage("Dosage " + id);
         medicine.setManufacturer("Manufacturer " + id);
         medicine.setPrice(1000.0);
-        Double discount = restTemplate.getForObject("http://localhost:8082/medicines/discount/category/" + category, Double.class);
+        Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + category, Double.class);
         medicine.setSales(discount);
         return medicine;
     }
