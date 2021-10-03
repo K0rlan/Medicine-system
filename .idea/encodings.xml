@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Abzal's Microservice/Consultation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Abzal's Microservice/Consultation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Abzal's Microservice/pharmacybranch/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Abzal's Microservice/pharmacybranch/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/discovery-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/discovery-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/medicines/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/medicines/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/payment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/payment/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sales/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sales/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

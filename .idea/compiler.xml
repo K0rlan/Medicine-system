@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="medicines" />
+        <module name="discovery-server" />
+        <module name="pharmacybranch" />
+        <module name="payment" />
+        <module name="consultation" />
+        <module name="sales" />
+        <module name="order" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="consultation" target="1.8" />
+      <module name="discovery-server" target="1.8" />
+      <module name="medicines" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="payment" target="1.8" />
+      <module name="pharmacybranch" target="1.8" />
+      <module name="sales" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="consultation" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="medicines" options="-parameters" />
+      <module name="order" options="-parameters" />
+      <module name="payment" options="-parameters" />
+      <module name="pharmacybranch" options="-parameters" />
+      <module name="sales" options="-parameters" />
+    </option>
+  </component>
+</project>

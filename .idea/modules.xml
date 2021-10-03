@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Medicine-system-main.iml" filepath="$PROJECT_DIR$/.idea/Medicine-system-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Abzal's Microservice/Consultation/consultation.iml" filepath="$PROJECT_DIR$/Abzal's Microservice/Consultation/consultation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/medicines/medicines.iml" filepath="$PROJECT_DIR$/medicines/medicines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/order/order.iml" filepath="$PROJECT_DIR$/microservices/order/order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/payment/payment.iml" filepath="$PROJECT_DIR$/microservices/payment/payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Abzal's Microservice/pharmacybranch/pharmacybranch.iml" filepath="$PROJECT_DIR$/Abzal's Microservice/pharmacybranch/pharmacybranch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sales/sales.iml" filepath="$PROJECT_DIR$/sales/sales.iml" />
+    </modules>
+  </component>
+</project>
