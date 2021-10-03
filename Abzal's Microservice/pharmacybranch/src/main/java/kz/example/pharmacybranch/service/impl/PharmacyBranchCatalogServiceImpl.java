@@ -1,5 +1,6 @@
 package kz.example.pharmacybranch.service.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import kz.example.pharmacybranch.model.Information;
 import kz.example.pharmacybranch.model.Pharmacy;
 import kz.example.pharmacybranch.model.Specialist;
@@ -45,11 +46,12 @@ public class PharmacyBranchCatalogServiceImpl implements PharmacyBranchCatalogSe
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "getAllPharmacies")
     public List<Pharmacy> getAllPharmacies() {
         List<Pharmacy> pharmacyList = new ArrayList<>();
         List<Long> pharmacyIds = new ArrayList<>(Arrays.asList(1L, 2L, 4L));
         for (Long id : pharmacyIds){
-            Information information = restTemplate.getForObject("http://localhost:8086/information/" + id, Information.class);
+            Information information = restTemplate.getForObject("http://consultation/consultation/" + id, Information.class);
             Random random = new Random();
             Specialist specialist = new Specialist();
             specialist.setName("Abzal");

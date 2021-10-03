@@ -1,6 +1,7 @@
 package kz.example.consultation.service.impl;
 
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import kz.example.consultation.model.Information;
 import kz.example.consultation.model.Medicine;
 import kz.example.consultation.service.ConsultationService;
@@ -18,9 +19,10 @@ public class ConsultationServiceImpl implements ConsultationService {
     private RestTemplate restTemplate;
 
     @Override
+    @HystrixCommand(fallbackMethod = "getInfoById")
     public Information getInfoById(long id) {
         Information information = new Information();
-        Medicine medicine = restTemplate.getForObject("http://localhost:8081/medicines/" + id, Medicine.class);
+        Medicine medicine = restTemplate.getForObject("http://medicines-service/medicines/" + id, Medicine.class);
         information.setId(id);
         information.setDosage(10.0);
         List<String> illsNames = Arrays.asList("sup1", "sup2", "sup3");
