@@ -1,6 +1,7 @@
 package kz.iitu.order.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import kz.iitu.order.db.Database;
 import kz.iitu.order.model.Customer;
 import kz.iitu.order.model.Medicine;
 import kz.iitu.order.model.Order;
@@ -22,18 +23,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @HystrixCommand(fallbackMethod = "getOrderById")
     public Order getOrderById(Long id) {
-        Order order = new Order();
-        order.setId(id);
-        order.setTotalCost(2000.0);
+        Database database = new Database();
+        Order order = database.getOrderById(id);
         Medicine medicine = restTemplate.getForObject("http://medicines-service/medicines/" + id, Medicine.class);
         List<Medicine> orderedMedicines = new ArrayList<>();
         orderedMedicines.add(medicine);
         order.setMedicines(orderedMedicines);
-        Customer customer = new Customer();
-        customer.setId(id);
-        customer.setName("Customer 1");
-        customer.setPhoneNumber("87771112233");
-        order.setCustomer(customer);
         return order;
     }
 }
