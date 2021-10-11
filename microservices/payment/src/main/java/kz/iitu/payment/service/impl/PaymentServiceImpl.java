@@ -1,6 +1,7 @@
 package kz.iitu.payment.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import kz.iitu.payment.PaymentDB.PaymentDatabase;
 import kz.iitu.payment.model.Order;
 import kz.iitu.payment.model.Payment;
 import kz.iitu.payment.service.PaymentService;
@@ -22,17 +23,12 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @HystrixCommand(fallbackMethod = "getAllPayment")
     public List<Payment> getAllPayment() {
-        List<Payment> paymentList = new ArrayList<>();
+        PaymentDatabase paymentDatabase = new PaymentDatabase();
+        List<Payment> paymentList = paymentDatabase.getPaymentList();
 
-        List<Long> paymentIds = new ArrayList<>(Arrays.asList(1L, 2L, 4L));
-        for (Long id : paymentIds) {
-            Payment payment = new Payment();
-            payment.setId(id);
-            payment.setStatus("not paid");
-            payment.setType("buy cash");
-            Order order = restTemplate.getForObject("http://order-service/orders/" + id, Order.class);
+        for (Payment payment: paymentList) {
+            Order order = restTemplate.getForObject("http://order-service/orders/" + payment.getId(), Order.class);
             payment.setOrder(order);
-            paymentList.add(payment);
         }
 
         return paymentList;
