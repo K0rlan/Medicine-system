@@ -18,8 +18,7 @@ public class ConsultationApplication {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
-        HttpComponentsClientHttpRequestFactory requestFactory
-                = new HttpComponentsClientHttpRequestFactory();
+        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setConnectTimeout(3000);
 
         RestTemplate restTemplate = new RestTemplate(requestFactory);
