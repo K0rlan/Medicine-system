@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/catalog")
+@RequestMapping("/pharmacies")
 public class PharmacyController {
     @Autowired
     private PharmacyBranchCatalogService pharmacyBranchCatalogService;
 
 
-    @GetMapping("/pharmacies")
+    @GetMapping("")
     public ResponseEntity<?> getAllPharmacy() {
         return ResponseEntity.ok(pharmacyBranchCatalogService.getAllPharmacies());
     }

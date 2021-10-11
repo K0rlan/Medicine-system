@@ -15,12 +15,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-
-//    @GetMapping
-//    public ResponseEntity<?> getAllOrders() {
-//        return ResponseEntity.ok(orderService.getAllOrders());
-//    }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getMedicineById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrderById(id));

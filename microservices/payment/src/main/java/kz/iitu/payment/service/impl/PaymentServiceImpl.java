@@ -1,5 +1,6 @@
 package kz.iitu.payment.service.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import kz.iitu.payment.model.Order;
 import kz.iitu.payment.model.Payment;
 import kz.iitu.payment.service.PaymentService;
@@ -19,6 +20,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     @Override
+    @HystrixCommand(fallbackMethod = "getAllPayment")
     public List<Payment> getAllPayment() {
         List<Payment> paymentList = new ArrayList<>();
 
@@ -28,7 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setId(id);
             payment.setStatus("not paid");
             payment.setType("buy cash");
-            Order order = restTemplate.getForObject("http://localhost:8083/orders/" + id, Order.class);
+            Order order = restTemplate.getForObject("http://order-service/orders/" + id, Order.class);
             payment.setOrder(order);
             paymentList.add(payment);
         }
