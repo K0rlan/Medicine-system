@@ -1,5 +1,6 @@
 package kz.iitu.medicines.controller;
 
+import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +23,10 @@ public class MedicineController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getMedicineById(@PathVariable Long id) {
         return ResponseEntity.ok(medicineService.getMedicineById(id));
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<?> getMedicineByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(medicineService.getMedicineByCategory(category));
     }
 }

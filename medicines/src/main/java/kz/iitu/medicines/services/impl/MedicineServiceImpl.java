@@ -1,6 +1,7 @@
 package kz.iitu.medicines.services.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import kz.iitu.medicines.db.Database;
 import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.model.Medicine;
 import kz.iitu.medicines.services.MedicineService;
@@ -21,40 +22,34 @@ public class MedicineServiceImpl implements MedicineService {
     @Override
     @HystrixCommand(fallbackMethod = "getAllMedicines")
     public List<Medicine> getAllMedicines() {
-        List<Medicine> medicineList = new ArrayList<>();
-
-        List<Long> medicineIds = new ArrayList<>(Arrays.asList(1L, 2L, 4L));
-        for (Long id : medicineIds) {
-            Medicine medicine = new Medicine();
-            medicine.setId(id);
-            medicine.setName("Title " + id);
-            Category category = Category.VITAMINS;
-            medicine.setCategory(category);
-            medicine.setDosage("Dosage " + id);
-            medicine.setManufacturer("Manufacturer " + id);
-            medicine.setPrice(1000.0);
-            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + category, Double.class);
-            medicine.setSales(discount);
-            medicineList.add(medicine);
+        Database db = new Database();
+        List<Medicine> medicineList = db.getFullMedicineList();
+        for (Medicine med : medicineList) {
+            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + med.getCategory(), Double.class);
+            med.setSales(discount);
         }
-
         return medicineList;
     }
 
     @Override
     @HystrixCommand(fallbackMethod = "getMedicineById")
     public Medicine getMedicineById(Long id) {
-        System.out.println("id = " + id);
-        Medicine medicine = new Medicine();
-        medicine.setId(id);
-        medicine.setName("Title " + id);
-        Category category = Category.VITAMINS;
-        medicine.setCategory(category);
-        medicine.setDosage("Dosage " + id);
-        medicine.setManufacturer("Manufacturer " + id);
-        medicine.setPrice(1000.0);
-        Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + category, Double.class);
+        Database db = new Database();
+        Medicine medicine = db.getMedicineById(id);
+        Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + medicine.getCategory(), Double.class);
         medicine.setSales(discount);
         return medicine;
+    }
+
+    @Override
+    @HystrixCommand(fallbackMethod = "getMedicineByCategory")
+    public List<Medicine> getMedicineByCategory(String category) {
+        Database db = new Database();
+        List<Medicine> medicineList = db.getMedicineByCategory(Category.valueOf(category));
+        for (Medicine med : medicineList) {
+            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + med.getCategory(), Double.class);
+            med.setSales(discount);
+        }
+        return medicineList;
     }
 }
