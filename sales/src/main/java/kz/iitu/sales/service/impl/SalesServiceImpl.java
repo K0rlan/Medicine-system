@@ -16,6 +16,7 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public Double getDiscountByMediicineCategory(Category category) {
+        System.out.println("getDiscountByMediicineCategory");
         switch (category) {
             case ALERGYPILLS:
                 return 15.0;

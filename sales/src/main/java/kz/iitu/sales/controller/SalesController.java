@@ -1,5 +1,6 @@
 package kz.iitu.sales.controller;
 
+import io.swagger.annotations.Api;
 import kz.iitu.sales.model.Category;
 import kz.iitu.sales.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/medicines/discount")
+@Api(value = "Sales Controller class", description = "The class allows to interact with medicine discounts.")
 public class SalesController {
     @Autowired
     private SalesService salesService;

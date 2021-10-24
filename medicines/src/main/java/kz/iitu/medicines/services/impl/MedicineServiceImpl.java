@@ -22,6 +22,7 @@ public class MedicineServiceImpl implements MedicineService {
     @Override
     @HystrixCommand(fallbackMethod = "getAllMedicines")
     public List<Medicine> getAllMedicines() {
+        System.out.println("getAllMedicines");
         Database db = new Database();
         List<Medicine> medicineList = db.getFullMedicineList();
         for (Medicine med : medicineList) {

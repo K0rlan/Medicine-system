@@ -1,5 +1,6 @@
 package kz.iitu.medicines.controller;
 
+import io.swagger.annotations.Api;
 import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/medicines")
+@Api(value = "Medicine Controller class", description = "The class allows to interact with Medicine base.")
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
