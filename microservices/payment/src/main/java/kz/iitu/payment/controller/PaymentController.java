@@ -1,5 +1,6 @@
 package kz.iitu.payment.controller;
 
+//import io.swagger.annotations.Api;
 import kz.iitu.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/payments")
+//@Api(value = "Payment Controller class", description = "This class allows to interact with Payment")
 public class PaymentController {
 
     @Autowired
