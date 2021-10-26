@@ -5,6 +5,7 @@ import kz.iitu.medicines.db.Database;
 import kz.iitu.medicines.model.Category;
 import kz.iitu.medicines.model.Medicine;
 import kz.iitu.medicines.services.MedicineService;
+import kz.iitu.medicines.services.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,36 +20,35 @@ public class MedicineServiceImpl implements MedicineService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private SalesService salesService;
+
     @Override
-    @HystrixCommand(fallbackMethod = "getAllMedicines")
     public List<Medicine> getAllMedicines() {
-        System.out.println("getAllMedicines");
         Database db = new Database();
         List<Medicine> medicineList = db.getFullMedicineList();
         for (Medicine med : medicineList) {
-            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + med.getCategory(), Double.class);
+            Double discount = salesService.getDiscountByMedicineCategory(med.getCategory());
             med.setSales(discount);
         }
         return medicineList;
     }
 
     @Override
-    @HystrixCommand(fallbackMethod = "getMedicineById")
     public Medicine getMedicineById(Long id) {
         Database db = new Database();
         Medicine medicine = db.getMedicineById(id);
-        Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + medicine.getCategory(), Double.class);
+        Double discount = salesService.getDiscountByMedicineCategory(medicine.getCategory());
         medicine.setSales(discount);
         return medicine;
     }
 
     @Override
-    @HystrixCommand(fallbackMethod = "getMedicineByCategory")
     public List<Medicine> getMedicineByCategory(String category) {
         Database db = new Database();
         List<Medicine> medicineList = db.getMedicineByCategory(Category.valueOf(category));
         for (Medicine med : medicineList) {
-            Double discount = restTemplate.getForObject("http://discount-service/medicines/discount/category/" + med.getCategory(), Double.class);
+            Double discount = salesService.getDiscountByMedicineCategory(med.getCategory());
             med.setSales(discount);
         }
         return medicineList;
