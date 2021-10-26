@@ -4,6 +4,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import kz.iitu.payment.PaymentDB.PaymentDatabase;
 import kz.iitu.payment.model.Order;
 import kz.iitu.payment.model.Payment;
+import kz.iitu.payment.service.OrderService;
 import kz.iitu.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private OrderService orderService;
+
 
     @Override
     @HystrixCommand(fallbackMethod = "getAllPayment")
@@ -27,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
         List<Payment> paymentList = paymentDatabase.getPaymentList();
 
         for (Payment payment: paymentList) {
-            Order order = restTemplate.getForObject("http://order-service/orders/" + payment.getId(), Order.class);
+            Order order = orderService.getOrderById(payment.getId());
             payment.setOrder(order);
         }
 
