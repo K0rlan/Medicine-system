@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -14,7 +16,8 @@ public class Pharmacy {
     private String name;
     private String address;
     private Double rating;
-    private  Specialist specialist;
+    private Specialist specialist;
     private Information information;
-
 }
+
+
