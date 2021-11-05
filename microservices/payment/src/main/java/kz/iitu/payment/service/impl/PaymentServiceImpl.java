@@ -1,6 +1,7 @@
 package kz.iitu.payment.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import kz.iitu.payment.PaymentDB.PaymentDatabase;
 import kz.iitu.payment.model.Order;
 import kz.iitu.payment.model.Payment;
@@ -25,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     @Override
-    @HystrixCommand(fallbackMethod = "getAllPayment")
+    @HystrixCommand(fallbackMethod = "getAllPaymentFallback")
     public List<Payment> getAllPayment() {
         PaymentDatabase paymentDatabase = new PaymentDatabase();
         List<Payment> paymentList = paymentDatabase.getPaymentList();
