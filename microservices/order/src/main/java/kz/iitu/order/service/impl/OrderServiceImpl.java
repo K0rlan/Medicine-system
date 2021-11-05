@@ -1,6 +1,7 @@
 package kz.iitu.order.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import kz.iitu.order.db.Database;
 import kz.iitu.order.model.Customer;
 import kz.iitu.order.model.Medicine;
@@ -21,7 +22,12 @@ public class OrderServiceImpl implements OrderService {
     private MedicineService medicineService;
 
     @Override
-    @HystrixCommand(fallbackMethod = "getOrderById")
+    @HystrixCommand(fallbackMethod = "getOrderByIdFallback",
+            threadPoolKey = "getOrderById",
+            threadPoolProperties = {
+                    @HystrixProperty(name="coreSize", value="100"),
+                    @HystrixProperty(name="maxQueueSize", value="50"),
+            })
     public Order getOrderById(Long id) {
         Database database = new Database();
         Order order = database.getOrderById(id);
