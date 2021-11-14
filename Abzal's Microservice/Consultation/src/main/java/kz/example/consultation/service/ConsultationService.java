@@ -7,5 +7,5 @@ import kz.example.consultation.model.Medicine;
 import java.util.List;
 
 public interface ConsultationService {
-     Information getInfoById(long id);
+    Information getInfoById(long id);
 }

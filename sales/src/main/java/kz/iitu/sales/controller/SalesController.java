@@ -21,6 +21,7 @@ public class SalesController {
     public ResponseEntity<?> getMedicineDiscountById(@PathVariable Long id) {
         return ResponseEntity.ok(salesService.getDiscountByMediicineId(id));
     }
+
     @GetMapping("/category/{category}")
     public ResponseEntity<?> getMedicineDiscountByCategory(@PathVariable Category category) {
         return ResponseEntity.ok(salesService.getDiscountByMediicineCategory(category));

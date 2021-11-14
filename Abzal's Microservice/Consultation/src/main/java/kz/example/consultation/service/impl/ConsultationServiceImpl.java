@@ -27,8 +27,8 @@ public class ConsultationServiceImpl implements ConsultationService {
         Medicine medicine = restTemplate.getForObject("http://medicines-service/medicines/" + id, Medicine.class);
         information.setMedicine(medicine);
         return information;
-        }
     }
+}
 
 
 

@@ -19,10 +19,10 @@ public class MedicineServiceImpl implements MedicineService {
             fallbackMethod = "getMedicineByIdFallback",
             threadPoolKey = "getMedicineById",
             threadPoolProperties = {
-                    @HystrixProperty(name="coreSize", value="100"),
-                    @HystrixProperty(name="maxQueueSize", value="50"),
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
-    public Medicine getMedicineById(Long id)  {
+    public Medicine getMedicineById(Long id) {
         return restTemplate.getForObject("http://medicines-service/medicines/" + id, Medicine.class);
     }
 

@@ -5,5 +5,5 @@ import kz.example.pharmacybranch.model.Information;
 
 
 public interface ConsultationService {
-     Information getInfoById(long id);
+    Information getInfoById(long id);
 }

@@ -17,6 +17,7 @@ public class ConsultationApplication {
     public static void main(String[] args) {
         SpringApplication.run(ConsultationApplication.class, args);
     }
+
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {

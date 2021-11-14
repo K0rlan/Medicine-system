@@ -22,18 +22,19 @@ public class ConsultationServiceImpl implements ConsultationService {
             fallbackMethod = "getInfoByIdFallback",
             threadPoolKey = "getInfoById",
             threadPoolProperties = {
-                    @HystrixProperty(name="coreSize", value="100"),
-                    @HystrixProperty(name="maxQueueSize", value="50"),
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
     public Information getInfoById(long id) {
         return restTemplate.getForObject("http://consultation-service/information/" + id, Information.class);
-        }
+    }
+
     public Information getInfoByIdFallback(Long id) {
         Information information = new Information();
         information.setId(0L);
         return information;
     }
-    }
+}
 
 
 

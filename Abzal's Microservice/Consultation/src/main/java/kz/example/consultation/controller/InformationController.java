@@ -16,7 +16,6 @@ public class InformationController {
     private ConsultationService consultationService;
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getInfoById(@PathVariable Long id) {
         return ResponseEntity.ok(consultationService.getInfoById(id));

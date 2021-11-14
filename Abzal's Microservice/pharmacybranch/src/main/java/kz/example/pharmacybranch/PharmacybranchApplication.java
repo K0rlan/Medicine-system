@@ -21,6 +21,7 @@ public class PharmacybranchApplication {
     public static void main(String[] args) {
         SpringApplication.run(PharmacybranchApplication.class, args);
     }
+
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {

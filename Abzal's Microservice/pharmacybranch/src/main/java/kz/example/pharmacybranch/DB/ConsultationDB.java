@@ -12,7 +12,7 @@ public class ConsultationDB {
     public List<Pharmacy> pharmacyList = new ArrayList<>();
     List<Specialist> specialistList = new ArrayList<>();
 
-    public ConsultationDB(){
+    public ConsultationDB() {
         Specialist specialist1 = new Specialist(1L, "Abzal");
         Specialist specialist2 = new Specialist(2L, "Assem");
         Specialist specialist3 = new Specialist(3L, "Korlan");
@@ -29,7 +29,7 @@ public class ConsultationDB {
     }
 
     public Pharmacy getPharmacyById(long id) {
-        for(Pharmacy item: pharmacyList){
+        for (Pharmacy item : pharmacyList) {
             if (id == item.getId()) {
                 return item;
             }

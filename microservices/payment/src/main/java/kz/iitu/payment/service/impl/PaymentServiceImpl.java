@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
         PaymentDatabase paymentDatabase = new PaymentDatabase();
         List<Payment> paymentList = paymentDatabase.getPaymentList();
 
-        for (Payment payment: paymentList) {
+        for (Payment payment : paymentList) {
             Order order = orderService.getOrderById(payment.getId());
             payment.setOrder(order);
         }

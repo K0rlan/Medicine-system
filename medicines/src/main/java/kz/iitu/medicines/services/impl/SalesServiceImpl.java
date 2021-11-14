@@ -19,8 +19,8 @@ public class SalesServiceImpl implements SalesService {
             fallbackMethod = "getDiscountByMedicineCategoryFallback",
             threadPoolKey = "getDiscountByMedicineCategory",
             threadPoolProperties = {
-                    @HystrixProperty(name="coreSize", value="100"),
-                    @HystrixProperty(name="maxQueueSize", value="50"),
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
     public Double getDiscountByMedicineCategory(Category category) {
         return restTemplate.getForObject("http://discount-service/medicines/discount/category/" + category, Double.class);

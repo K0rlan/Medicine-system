@@ -11,7 +11,7 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public Double getDiscountByMediicineId(Long id) {
-        return new Double(10*id);
+        return new Double(10 * id);
     }
 
     @Override

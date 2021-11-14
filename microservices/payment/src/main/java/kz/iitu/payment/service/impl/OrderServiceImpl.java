@@ -18,8 +18,8 @@ public class OrderServiceImpl implements OrderService {
     @HystrixCommand(fallbackMethod = "getOrderByIdFallback",
             threadPoolKey = "getOrderById",
             threadPoolProperties = {
-                    @HystrixProperty(name="coreSize", value="100"),
-                    @HystrixProperty(name="maxQueueSize", value="50"),
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
     public Order getOrderById(Long id) {
         return restTemplate.getForObject("http://order-service/orders/" + id, Order.class);
