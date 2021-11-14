@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/medicines/discount")
+@RequestMapping("/")
 @Api(value = "Sales Controller class", description = "The class allows to interact with medicine discounts.")
 public class SalesController {
     @Autowired
