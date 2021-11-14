@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/medicines")
+@RequestMapping("/")
 @Api(value = "Medicine Controller class", description = "The class allows to interact with Medicine base.")
 public class MedicineController {
     @Autowired
