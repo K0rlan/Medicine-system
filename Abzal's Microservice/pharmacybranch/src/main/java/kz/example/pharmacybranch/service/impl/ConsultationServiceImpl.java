@@ -26,7 +26,16 @@ public class ConsultationServiceImpl implements ConsultationService {
                     @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
     public Information getInfoById(long id) {
-        return restTemplate.getForObject("http://consultation-service/information/" + id, Information.class);
+        String apiCredentials = "koko-client:koko";
+        String base64Credentials = new String(Base64.encodeBase64(apiCredentials.getBytes()));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Basic " + base64Credentials);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+
+        return restTemplate.exchange("http://consultation-service/information/" + id,
+                HttpMethod.GET, entity, Information.class).getBody();
     }
 
     public Information getInfoByIdFallback(Long id) {
