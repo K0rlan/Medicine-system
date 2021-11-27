@@ -34,11 +34,11 @@ public class SalesServiceImpl implements SalesService {
         headers.add("Authorization", "Basic " + base64Credentials);
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        return restTemplate.exchange("http://discount-service/medicines/discount/category/" + category,
+        return restTemplate.exchange("http://discount-service/discount/category/" + category,
                 HttpMethod.GET, entity, Double.class).getBody();
     }
 
     public Double getDiscountByMedicineCategoryFallback(Category category) {
-        return 0.0;
+        return 1.0;
     }
 }
