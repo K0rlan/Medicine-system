@@ -37,4 +37,15 @@ public class OrderServiceImpl implements OrderService {
         order.setMedicines(orderedMedicines);
         return order;
     }
+
+    public Order getOrderByIdFallback(Long id) {
+        Order order = new Order();
+        Medicine medicine = new Medicine();
+        medicine.setId(0L);
+        medicine.setName("Medicine is not available: Service Unavailable");
+        List<Medicine> orderedMedicines = new ArrayList<>();
+        orderedMedicines.add(medicine);
+        order.setMedicines(orderedMedicines);
+        return order;
+    }
 }
