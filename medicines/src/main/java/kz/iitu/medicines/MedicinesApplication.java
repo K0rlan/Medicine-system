@@ -1,6 +1,6 @@
 package kz.iitu.medicines;
 
-import kz.iitu.medicines.model.SalesRequest;
+import kz.iitu.medicines.model.DiscountRequest;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.SpringApplication;
@@ -17,8 +17,6 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,8 +55,8 @@ public class MedicinesApplication {
     }
 
     @Bean
-    public ConsumerFactory<String, SalesRequest> consumerFactory() {
-        JsonDeserializer<SalesRequest> deserializer = new JsonDeserializer<>(SalesRequest.class);
+    public ConsumerFactory<String, DiscountRequest> consumerFactory() {
+        JsonDeserializer<DiscountRequest> deserializer = new JsonDeserializer<>(DiscountRequest.class);
 //		deserializer.setRemoveTypeHeaders(false);
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
@@ -68,13 +66,11 @@ public class MedicinesApplication {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, SalesRequest> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, SalesRequest> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, DiscountRequest> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, DiscountRequest> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
 
         return factory;
     }
-
-
 }
