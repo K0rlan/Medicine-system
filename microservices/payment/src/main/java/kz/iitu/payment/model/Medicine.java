@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Medicine {
     private Long id;
-    private List<Medicine> medicines;
-    private Customer customer;
-    private Double totalCost;
+    private String name;
+    private String dosage;
+    private String manufacturer;
+    private String category;
+    private Double price;
 }

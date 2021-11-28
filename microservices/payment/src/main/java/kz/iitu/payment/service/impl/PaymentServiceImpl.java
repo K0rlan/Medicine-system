@@ -26,7 +26,12 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     @Override
-    @HystrixCommand(fallbackMethod = "getAllPaymentFallback")
+    @HystrixCommand(fallbackMethod = "getAllPaymentFallback",
+            threadPoolKey = "getAllPayment",
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "100"),
+                    @HystrixProperty(name = "maxQueueSize", value = "50"),
+            })
     public List<Payment> getAllPayment() {
         PaymentDatabase paymentDatabase = new PaymentDatabase();
         List<Payment> paymentList = paymentDatabase.getPaymentList();
@@ -35,6 +40,19 @@ public class PaymentServiceImpl implements PaymentService {
             Order order = orderService.getOrderById(payment.getId());
             payment.setOrder(order);
         }
+
+        return paymentList;
+    }
+
+    public List<Payment> getAllPaymentFallback() {
+        List<Payment> paymentList = new ArrayList<>();
+
+            Order order = new Order();
+            order.setId(0L);
+            order.setTotalCost(0.0);
+            Payment payment = new Payment();
+            payment.setOrder(order);
+            payment.setStatus("Fallback");
 
         return paymentList;
     }

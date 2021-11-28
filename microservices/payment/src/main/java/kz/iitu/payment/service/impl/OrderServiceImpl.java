@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderById(Long id) {
 //        return restTemplate.getForObject("http://order-service/orders/" + id, Order.class);
 
-        String apiCredentials = "order-client:order-password";
+        String apiCredentials = "order-client:orderPassword";
         String base64Credentials = new String(Base64.encodeBase64(apiCredentials.getBytes()));
 
         HttpHeaders headers = new HttpHeaders();

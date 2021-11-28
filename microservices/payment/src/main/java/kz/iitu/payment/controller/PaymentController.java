@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/")
 //@Api(value = "Payment Controller class", description = "This class allows to interact with Payment")
 public class PaymentController {
 
