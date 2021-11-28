@@ -7,7 +7,11 @@ import kz.example.pharmacybranch.DB.ConsultationDB;
 import kz.example.pharmacybranch.model.Information;
 import kz.example.pharmacybranch.model.Medicine;
 import kz.example.pharmacybranch.service.ConsultationService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
