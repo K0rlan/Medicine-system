@@ -5,6 +5,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import kz.iitu.payment.PaymentDB.PaymentDatabase;
 import kz.iitu.payment.model.Order;
 import kz.iitu.payment.model.Payment;
+import kz.iitu.payment.repository.PaymentRepository;
 import kz.iitu.payment.service.OrderService;
 import kz.iitu.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private PaymentRepository paymentRepository;
+
 
     @Override
     @HystrixCommand(fallbackMethod = "getAllPaymentFallback",
@@ -33,9 +37,9 @@ public class PaymentServiceImpl implements PaymentService {
                     @HystrixProperty(name = "maxQueueSize", value = "50"),
             })
     public List<Payment> getAllPayment() {
-        PaymentDatabase paymentDatabase = new PaymentDatabase();
-        List<Payment> paymentList = paymentDatabase.getPaymentList();
-
+//        PaymentDatabase paymentDatabase = new PaymentDatabase();
+//        List<Payment> paymentList = paymentDatabase.getPaymentList();
+        List<Payment> paymentList = paymentRepository.findAll();
         for (Payment payment : paymentList) {
             Order order = orderService.getOrderById(payment.getId());
             payment.setOrder(order);
