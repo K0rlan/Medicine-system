@@ -3,9 +3,9 @@ package kz.example.pharmacybranch.service.impl;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import kz.example.pharmacybranch.DB.ConsultationDB;
 import kz.example.pharmacybranch.model.Information;
 import kz.example.pharmacybranch.model.Medicine;
+import kz.example.pharmacybranch.repository.PharmacyRepository;
 import kz.example.pharmacybranch.service.ConsultationService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;

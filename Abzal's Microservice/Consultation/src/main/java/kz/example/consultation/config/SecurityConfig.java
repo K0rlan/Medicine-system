@@ -1,4 +1,4 @@
-package kz.iitu.consultation.config;
+package kz.example.consultation.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,11 +19,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
-            throws Exception
-    {
+            throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("consultation-client")
-                .password("{noop}consultation-password")
+                .password("{noop}abzik")
                 .roles("REST_CLIENT");
     }
 }

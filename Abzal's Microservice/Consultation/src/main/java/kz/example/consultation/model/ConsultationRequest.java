@@ -30,7 +30,7 @@ public class ConsultationRequest {
 
     @Override
     public String toString() {
-        return "BookRequest{" +
+        return "ConsultationRequest{" +
                 "consultationId='" + consultationId + '\'' +
                 ", Information=" + information +
                 '}';
