@@ -11,13 +11,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
+@Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double totalCost;
+    private String medicines;
 
-    private List<Medicine> medicines;
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 }
