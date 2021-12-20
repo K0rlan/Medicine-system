@@ -11,6 +11,7 @@ import kz.iitu.order.repository.OrderRepository;
 import kz.iitu.order.service.MedicineService;
 import kz.iitu.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,23 +41,18 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderById(Long id) {
 //        Database database = new Database();
 //        Order order = database.getOrderById(id);
-        System.out.println("////");
         Order order = orderRepository.findOrderById(id);
-        Customer customer = customerRepository.findCustomerById(id);
+        Customer customer = customerRepository.findCustomerById(order.getCustomer().getId());
         order.setCustomer(customer);
         Medicine medicine = medicineService.getMedicineById(id);
-        System.out.println("medicine.getName(): " + medicine.getName());
-        List<Medicine> orderedMedicines = new ArrayList<>();
-        orderedMedicines.add(medicine);
+//        System.out.println("medicine.getName(): " + medicine.getName());
+//        List<Medicine> orderedMedicines = new ArrayList<>();
+//        orderedMedicines.add(medicine);
         Double totalCost = 0.0;
-
 //        Customer customer =
         StringBuilder medicinesString = new StringBuilder();
-        for (Medicine medicineObj: orderedMedicines) {
-            medicinesString.append(medicineObj.getName()).append(", ");
-            totalCost += medicineObj.getPrice();
-        }
-        System.out.println("///" + medicinesString);
+            medicinesString.append(medicine.getName());
+            totalCost = medicine.getPrice();
         order.setMedicines(medicinesString.toString());
         order.setTotalCost(totalCost);
         order = orderRepository.save(order);

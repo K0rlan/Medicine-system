@@ -8,11 +8,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Entity
-//@Table(name = "medicine")
 public class Medicine {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String dosage;

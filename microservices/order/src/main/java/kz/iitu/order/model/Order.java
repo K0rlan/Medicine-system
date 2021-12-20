@@ -1,5 +1,6 @@
 package kz.iitu.order.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ public class Order {
     private Double totalCost;
     private String medicines;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 }

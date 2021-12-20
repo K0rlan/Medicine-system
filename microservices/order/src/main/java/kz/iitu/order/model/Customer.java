@@ -22,7 +22,7 @@ public class Customer {
     private String name;
     private String phoneNumber;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="customer")
+//    @JsonIgnore
+    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 }
